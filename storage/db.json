@@ -1,6 +1,20 @@
 {
    "usersDb": [
       {
+         "id": 2,
+         "username": "Omolayo Victor",
+         "email": "omolayo@gma;oikuyjtil.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
+         "id": 1,
+         "username": "charles chiakwa",
+         "email": "charles@gmailkjhgfd.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
          "id": 0,
          "username": "olapade sodeeq",
          "email": "olapadeabiodun20@gmail.com",

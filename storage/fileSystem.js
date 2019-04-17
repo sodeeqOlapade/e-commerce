@@ -13,17 +13,17 @@ writeDb = function(path, object) {
     if (err) throw err;
     let response = JSON.parse(data);
 
+    if (response[path].some(user => user.username === object.username)) {
+      console.log(`user with username "${object.username}" already exist`);
+      return;
+    }
+
     response[path].push(object);
 
-    fs.writeFile(
+    fs.writeFileSync(
       "./storage/db.json",
       JSON.stringify(response, null, 3),
-      err => {
-        if (err) throw err;
-        path === "usersDb"
-          ? console.log("User successfully added")
-          : console.log("order successfully added");
-      }
+      "utf8"
     );
   });
 };

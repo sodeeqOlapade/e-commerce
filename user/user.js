@@ -20,7 +20,9 @@ User.prototype.saveToDb = function() {
   writeDb("usersDb", user);
 };
 
-User.prototype.readAllUsers = function(id) {};
+User.prototype.readAllUsers = function() {
+  readDbPath("usersDb");
+};
 
 let sodeeq = new User(
   "olapade sodeeq",
@@ -28,10 +30,16 @@ let sodeeq = new User(
   "password"
 );
 
-let charles = new User("charles chiakwa", "charles@gmail.com", "password");
+let charles = new User(
+  "charles chiakwa",
+  "charles@gmailkjhgfd.com",
+  "password"
+);
 
-let victor = new User("Omolayo Victor", "omolayo@gmail.com", "password");
-sodeeq.saveToDb();
-console.log(sodeeq);
-console.log(charles);
-console.log(victor);
+let victor = new User(
+  "Omolayo Victor",
+  "omolayo@gma;oikuyjtil.com",
+  "password"
+);
+
+console.log(victor.uId)
