@@ -16,10 +16,17 @@
       },
       {
          "id": 0,
-         "username": "olapade sodeeq",
+         "username": "sodeeqOlapade",
          "email": "olapadeabiodun20@gmail.com",
+         "password": "123456",
+         "isAdmin": "false"
+      },
+      {
+         "id": 3,
+         "username": "Joseph Abetang Abetang.",
+         "email": "joseph@gmail.com",
          "password": "password",
-         "isAdmin": false
+         "isAdmin": "false"
       }
    ],
    "ordersDb": []
