@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-module.exports.readDbPath = function(path) {
+readDbPath = function(path) {
   fs.readFile("./storage/db.json", "utf8", (err, data) => {
     if (err) throw err;
     let response = JSON.parse(data);
@@ -8,7 +8,7 @@ module.exports.readDbPath = function(path) {
   });
 };
 
-module.exports.writeDb = function(path, object) {
+writeDb = function(path, object) {
   fs.readFile("./storage/db.json", "utf8", (err, data) => {
     if (err) throw err;
     let response = JSON.parse(data);
@@ -27,3 +27,5 @@ module.exports.writeDb = function(path, object) {
     );
   });
 };
+
+module.exports = { readDbPath, writeDb };
