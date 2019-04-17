@@ -1,0 +1,36 @@
+{
+   "usersDb": [
+      {
+         "name": "olapade sodeeq",
+         "age": "25",
+         "email": "olapadeabiodun20@gmail.com"
+      },
+      {
+         "name": "olapade sodeeq",
+         "age": "25",
+         "email": "olapadeabiodun20@gmail.com"
+      }
+   ],
+   "ordersDb": [
+      {
+         "userId": 1,
+         "dateOfOrder": "Wed Apr 17 2019",
+         "timeOfOrder": "1,555,491,270,518",
+         "products": [
+            "rice",
+            "honey",
+            "pants"
+         ]
+      },
+      {
+         "userId": 1,
+         "dateOfOrder": "Wed Apr 17 2019",
+         "timeOfOrder": "1,555,491,373,333",
+         "products": [
+            "rice",
+            "honey",
+            "pants"
+         ]
+      }
+   ]
+}
