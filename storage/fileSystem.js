@@ -60,17 +60,54 @@ writeOrderToDb = function(path, object) {
   console.log("Order successfully created!");
 };
 
-deleteOneUser = function(uId) {
+deleteUser = function(uId) {
   let response = readDb();
-  let user = response.usersDb.filter(user => user.id === uId);
-  let userIndex = response.usersDb.indexOf(user[0]);
-  if (userIndex === -1) {
-    console.log("User does not exist");
-    return;
+  if (arguments.length === 0) {
+    response.usersDb = [];
+    console.log("All Users deleted!");
+  } else {
+    let user = response.usersDb.filter(user => user.id === uId);
+    let userIndex = response.usersDb.indexOf(user[0]);
+    if (userIndex === -1) {
+      console.log("User does not exist");
+      return;
+    }
+    response.usersDb.splice(userIndex, 1);
+    console.log("User successfully deleted!");
   }
-  response.usersDb.splice(userIndex, 1);
   writeDataToDb(response);
-  console.log("User successfully deleted!");
+};
+
+readOrders = function(id) {
+  let response = readDb();
+  if (arguments.length === 0) {
+    //read all orders
+    console.log(response["ordersDb"]);
+  } else {
+    //read with Id
+    let order = response.ordersDb.find(order => order.orderId === id);
+    order === undefined
+      ? console.log("Order does not exist")
+      : console.log(order);
+  }
+};
+
+deleteOrder = function(uId) {
+  let response = readDb();
+  if (arguments.length === 0) {
+    response.ordersDb = [];
+    console.log("All Orders deleted!");
+  } else {
+    let orderToBeDeleted = response.ordersDb.filter(order => order.orderId === uId);
+    let orderIndex = response.ordersDb.indexOf(orderToBeDeleted[0]);
+    if (orderIndex === -1) {
+      console.log("Order does not exist");
+      return;
+    }
+    response.ordersDb.splice(orderIndex, 1);
+    console.log("order successfully deleted!");
+  }
+  writeDataToDb(response);
 };
 
 module.exports = {
@@ -80,5 +117,7 @@ module.exports = {
   writeUserToDb,
   updateUserById,
   writeOrderToDb,
-  deleteOneUser
+  deleteUser,
+  readOrders,
+  deleteOrder
 };

@@ -1,6 +1,11 @@
 const User = require("../user/user");
 
-const { readDbPath, deleteOneUser } = require("../storage/fileSystem");
+const {
+  readDbPath,
+  deleteUser,
+  readOrders,
+  deleteOrder
+} = require("../storage/fileSystem");
 
 function Admin(name, email, password) {
   User.call(this, name, email, password);
@@ -32,12 +37,32 @@ Admin.prototype.readAllUsers = function() {
 };
 
 Admin.prototype.deleteOneUser = function(uId) {
-    deleteOneUser(uId)
+  deleteUser(uId);
+};
+
+Admin.prototype.deleteAllUser = function() {
+  deleteUser();
+};
+
+Admin.prototype.readOneOrder = function(orderId) {
+  readOrders(orderId);
+};
+
+Admin.prototype.readAllOrders = function() {
+  readOrders();
+};
+
+Admin.prototype.deleteOneOrder = function(uId) {
+  deleteOrder(uId);
+};
+
+Admin.prototype.deleteAllOrder = function() {
+  deleteOrder();
 };
 
 // admin1.saveToDb();
 
 // console.log(admin1);
-admin1.searchUserByName('sodeeq');
+admin1.deleteAllOrder();
 // admin1.deleteOneUser(1)
 // admin1.readAllUsers();

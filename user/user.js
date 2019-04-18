@@ -86,12 +86,12 @@ let ibrahim = new User(
   "password"
 );
 
-sodeeq.makeOrder(['tea', 'bread', 'butter']);
-victor.saveToDb();
-charles.saveToDb();
-Joseph.saveToDb();
-ibrahim.saveToDb();
+// victor.saveToDb();
+// charles.saveToDb();
+// Joseph.saveToDb();
+// ibrahim.saveToDb();
 
+// sodeeq.makeOrder(['tea', 'bread', 'butter']);
 // sodeeq.makeOrder(["rice", "beans", "chicken"]);
 // victor.makeOrder(["rice", "beans", "chicken"]);
 // charles.makeOrder(["rice", "beans", "chicken"]);

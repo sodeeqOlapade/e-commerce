@@ -1,13 +1,6 @@
 {
    "usersDb": [
       {
-         "id": 0,
-         "username": "olapade sodeeq",
-         "email": "olapadeabiodun20@gmail.com",
-         "password": "password",
-         "isAdmin": false
-      },
-      {
          "id": 2,
          "username": "Omolayo Victor",
          "email": "omolayo@gma;oikuyjtil.com",
@@ -38,20 +31,20 @@
    ],
    "ordersDb": [
       {
-         "orderId": 4,
-         "userId": 3,
-         "timeOfOrder": "5:01:21 AM",
+         "orderId": 0,
+         "userId": 0,
+         "timeOfOrder": "10:17:18 AM",
          "dateOfOrder": "4/18/2019",
          "products": [
-            "rice",
-            "beans",
-            "chicken"
+            "tea",
+            "bread",
+            "butter"
          ]
       },
       {
-         "orderId": 3,
-         "userId": 4,
-         "timeOfOrder": "5:01:43 AM",
+         "orderId": 1,
+         "userId": 0,
+         "timeOfOrder": "10:17:18 AM",
          "dateOfOrder": "4/18/2019",
          "products": [
             "rice",
@@ -61,19 +54,8 @@
       },
       {
          "orderId": 2,
-         "userId": 1,
-         "timeOfOrder": "5:03:12 AM",
-         "dateOfOrder": "4/18/2019",
-         "products": [
-            "rice",
-            "beans",
-            "chicken"
-         ]
-      },
-      {
-         "orderId": 1,
          "userId": 2,
-         "timeOfOrder": "5:03:27 AM",
+         "timeOfOrder": "10:17:18 AM",
          "dateOfOrder": "4/18/2019",
          "products": [
             "rice",
@@ -82,14 +64,36 @@
          ]
       },
       {
-         "orderId": 0,
-         "userId": 0,
-         "timeOfOrder": "9:18:18 AM",
+         "orderId": 3,
+         "userId": 1,
+         "timeOfOrder": "10:17:18 AM",
          "dateOfOrder": "4/18/2019",
          "products": [
-            "tea",
-            "bread",
-            "butter"
+            "rice",
+            "beans",
+            "chicken"
+         ]
+      },
+      {
+         "orderId": 4,
+         "userId": 4,
+         "timeOfOrder": "10:17:18 AM",
+         "dateOfOrder": "4/18/2019",
+         "products": [
+            "rice",
+            "beans",
+            "chicken"
+         ]
+      },
+      {
+         "orderId": 5,
+         "userId": 3,
+         "timeOfOrder": "10:17:18 AM",
+         "dateOfOrder": "4/18/2019",
+         "products": [
+            "rice",
+            "beans",
+            "chicken"
          ]
       }
    ]
