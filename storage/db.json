@@ -1,6 +1,13 @@
 {
    "usersDb": [
       {
+         "id": 0,
+         "username": "olapade sodeeq",
+         "email": "olapadeabiodun20@gmail.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
          "id": 2,
          "username": "Omolayo Victor",
          "email": "omolayo@gma;oikuyjtil.com",
@@ -24,6 +31,13 @@
       {
          "id": 4,
          "username": "Ibrahim Joseph",
+         "email": "ibrahimJosephIbrahim@gmail.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
+         "id": 5,
+         "username": "Ibrahim Joseph Otega",
          "email": "ibrahimJosephIbrahim@gmail.com",
          "password": "password",
          "isAdmin": false

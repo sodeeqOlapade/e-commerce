@@ -98,7 +98,9 @@ deleteOrder = function(uId) {
     response.ordersDb = [];
     console.log("All Orders deleted!");
   } else {
-    let orderToBeDeleted = response.ordersDb.filter(order => order.orderId === uId);
+    let orderToBeDeleted = response.ordersDb.filter(
+      order => order.orderId === uId
+    );
     let orderIndex = response.ordersDb.indexOf(orderToBeDeleted[0]);
     if (orderIndex === -1) {
       console.log("Order does not exist");

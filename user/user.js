@@ -24,7 +24,6 @@ User.prototype.saveToDb = function() {
   user.email = this.email;
   user.password = this.password;
   user.isAdmin = false;
-
   writeUserToDb("usersDb", user);
 };
 
@@ -86,10 +85,18 @@ let ibrahim = new User(
   "password"
 );
 
-// victor.saveToDb();
-// charles.saveToDb();
-// Joseph.saveToDb();
-// ibrahim.saveToDb();
+let tega = new User(
+  "Ibrahim Joseph Otega",
+  "ibrahimJosephIbrahim@gmail.com",
+  "password"
+);
+
+sodeeq.saveToDb();
+victor.saveToDb();
+charles.saveToDb();
+Joseph.saveToDb();
+ibrahim.saveToDb();
+tega.saveToDb();
 
 // sodeeq.makeOrder(['tea', 'bread', 'butter']);
 // sodeeq.makeOrder(["rice", "beans", "chicken"]);
