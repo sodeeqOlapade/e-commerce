@@ -54,12 +54,11 @@ updateUserById = function(uId, updatedUser) {
       "utf8"
     );
 
-    console.log('Details successfully updated!');
-
+    console.log("Details successfully updated!");
   });
 };
 
-writeDb = function(path, object) {
+writeUserToDb = function(path, object) {
   fs.readFile("./storage/db.json", "utf8", (err, data) => {
     if (err) throw err;
     let response = JSON.parse(data);
@@ -77,7 +76,24 @@ writeDb = function(path, object) {
       "utf8"
     );
 
-    console.log('Account successfully created!');
+    console.log("Account successfully created!");
+  });
+};
+
+writeOrderToDb = function(path, object) {
+  fs.readFile("./storage/db.json", "utf8", (err, data) => {
+    if (err) throw err;
+    let response = JSON.parse(data);
+
+    response[path].push(object);
+
+    fs.writeFileSync(
+      "./storage/db.json",
+      JSON.stringify(response, null, 3),
+      "utf8"
+    );
+
+    console.log("Order successfully created!");
   });
 };
 
@@ -85,6 +101,7 @@ module.exports = {
   readDbPath,
   searchUserByUsername,
   searchUserByUserId,
-  writeDb,
-  updateUserById
+  writeUserToDb,
+  updateUserById,
+  writeOrderToDb
 };

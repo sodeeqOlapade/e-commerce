@@ -2,10 +2,12 @@ const {
   readDbPath,
   searchUserByUsername,
   searchUserByUserId,
-  writeDb,
-  updateUserById
+  writeUserToDb,
+  updateUserById,
+  writeOrderToDb
 } = require("../storage/fileSystem");
 const generateId = require("../user/id");
+const order = require("../user/order");
 
 function User(name, email, password) {
   this.username = name;
@@ -23,7 +25,7 @@ User.prototype.saveToDb = function() {
   user.password = this.password;
   user.isAdmin = false;
 
-  writeDb("usersDb", user);
+  writeUserToDb("usersDb", user);
 };
 
 User.prototype.readAllUsers = function() {
@@ -46,9 +48,16 @@ User.prototype.updateUserDetails = function(name, email, password) {
   updatedUser.username = name;
   updatedUser.email = email;
   updatedUser.password = password;
-  updatedUser.isAdmin = 'false';
+  updatedUser.isAdmin = "false";
 
   updateUserById(id, updatedUser);
+};
+
+User.prototype.makeOrder = function(products) {
+  let id = this.uId;
+
+  let userOrder = new order(id, products);
+  writeOrderToDb("ordersDb", userOrder);
 };
 
 let sodeeq = new User(
@@ -69,14 +78,19 @@ let victor = new User(
   "password"
 );
 
+let Joseph = new User("Abetang Joseph", "abetang@gmail.com", "password");
+
+let ibrahim = new User("Ibrahim Joseph", "ibrahim@gmail.com", "password");
+
 // sodeeq.saveToDb();
 // victor.saveToDb();
 // charles.saveToDb();
+// Joseph.saveToDb();
+// ibrahim.saveToDb();
 
-let abetang = new User(
-  "Abetang Joseph",
-  "josephabetang.com",
-  "password"
-);
+sodeeq.makeOrder(["rice", "beans", "chicken"]);
+// victor.makeOrder(["rice", "beans", "chicken"]);
+// charles.makeOrder(["rice", "beans", "chicken"]);
+// ibrahim.makeOrder(["rice", "beans", "chicken"]);
+// Joseph.makeOrder(["rice", "beans", "chicken"]);
 
-abetang.updateUserDetails('Joseph Abetang Abetang.', 'joseph@gmail.com', 'password')
