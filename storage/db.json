@@ -5,7 +5,7 @@
          "username": "olapade sodeeq",
          "email": "olapadeabiodun20@gmail.com",
          "password": "password",
-         "isAdmin": false
+         "isAdmin": "false"
       },
       {
          "id": 2,
@@ -47,7 +47,9 @@
       {
          "orderId": 0,
          "userId": 0,
-         "timeOfOrder": "10:17:18 AM",
+         "username": "olapade sodeeq",
+         "useremail": "olapadeabiodun20@gmail.com",
+         "timeOfOrder": "2:47:07 PM",
          "dateOfOrder": "4/18/2019",
          "products": [
             "tea",
@@ -58,7 +60,9 @@
       {
          "orderId": 1,
          "userId": 0,
-         "timeOfOrder": "10:17:18 AM",
+         "username": "olapade sodeeq",
+         "useremail": "olapadeabiodun20@gmail.com",
+         "timeOfOrder": "2:47:07 PM",
          "dateOfOrder": "4/18/2019",
          "products": [
             "rice",
@@ -69,18 +73,22 @@
       {
          "orderId": 2,
          "userId": 2,
-         "timeOfOrder": "10:17:18 AM",
+         "username": "Omolayo Victor",
+         "useremail": "omolayo@gma;oikuyjtil.com",
+         "timeOfOrder": "2:47:07 PM",
          "dateOfOrder": "4/18/2019",
          "products": [
-            "rice",
-            "beans",
-            "chicken"
+            "jeans",
+            "milk",
+            "flour"
          ]
       },
       {
          "orderId": 3,
          "userId": 1,
-         "timeOfOrder": "10:17:18 AM",
+         "username": "charles chiakwa",
+         "useremail": "charles@gmailkjhgfd.com",
+         "timeOfOrder": "2:47:07 PM",
          "dateOfOrder": "4/18/2019",
          "products": [
             "rice",
@@ -91,7 +99,9 @@
       {
          "orderId": 4,
          "userId": 4,
-         "timeOfOrder": "10:17:18 AM",
+         "username": "Ibrahim Joseph",
+         "useremail": "ibrahimJosephIbrahim@gmail.com",
+         "timeOfOrder": "2:47:07 PM",
          "dateOfOrder": "4/18/2019",
          "products": [
             "rice",
@@ -102,12 +112,14 @@
       {
          "orderId": 5,
          "userId": 3,
-         "timeOfOrder": "10:17:18 AM",
+         "username": "Abetang Joseph",
+         "useremail": "abetangJosephAbetang@gmail.com",
+         "timeOfOrder": "2:47:07 PM",
          "dateOfOrder": "4/18/2019",
          "products": [
             "rice",
-            "beans",
-            "chicken"
+            "TV-set",
+            "matress"
          ]
       }
    ]

@@ -49,9 +49,12 @@ User.prototype.updateUserDetails = function(name, email, password) {
 };
 
 User.prototype.makeOrder = function(products) {
-  let id = this.uId;
-
-  let userOrder = new order(id, products);
+  let userOrder = new order(
+    (id = this.uId),
+    (username = this.username),
+    (email = this.email),
+    products
+  );
   writeOrderToDb("ordersDb", userOrder);
 };
 
@@ -91,18 +94,24 @@ let tega = new User(
   "password"
 );
 
-sodeeq.saveToDb();
-victor.saveToDb();
-charles.saveToDb();
-Joseph.saveToDb();
-ibrahim.saveToDb();
-tega.saveToDb();
+// sodeeq.saveToDb();
+// victor.saveToDb();
+// charles.saveToDb();
+// Joseph.saveToDb();
+// ibrahim.saveToDb();
+// tega.saveToDb();
+
+// sodeeq.updateUserDetails(
+//   "olapade sodeeq",
+//   "olapadeabiodun20@gmail.com",
+//   "password"
+// );
 
 // sodeeq.makeOrder(['tea', 'bread', 'butter']);
 // sodeeq.makeOrder(["rice", "beans", "chicken"]);
-// victor.makeOrder(["rice", "beans", "chicken"]);
+// victor.makeOrder(["jeans", "milk", "flour"]);
 // charles.makeOrder(["rice", "beans", "chicken"]);
 // ibrahim.makeOrder(["rice", "beans", "chicken"]);
-// Joseph.makeOrder(["rice", "beans", "chicken"]);
+// Joseph.makeOrder(["rice", "TV-set", "matress"]);
 
 module.exports = User;
