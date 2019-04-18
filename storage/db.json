@@ -1,0 +1,33 @@
+{
+   "usersDb": [
+      {
+         "id": 2,
+         "username": "Omolayo Victor",
+         "email": "omolayo@gma;oikuyjtil.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
+         "id": 1,
+         "username": "charles chiakwa",
+         "email": "charles@gmailkjhgfd.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
+         "id": 0,
+         "username": "sodeeqOlapade",
+         "email": "olapadeabiodun20@gmail.com",
+         "password": "123456",
+         "isAdmin": "false"
+      },
+      {
+         "id": 3,
+         "username": "Joseph Abetang Abetang.",
+         "email": "joseph@gmail.com",
+         "password": "password",
+         "isAdmin": "false"
+      }
+   ],
+   "ordersDb": []
+}
