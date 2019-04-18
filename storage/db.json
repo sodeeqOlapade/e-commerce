@@ -1,30 +1,37 @@
 {
    "usersDb": [
       {
+         "id": 0,
+         "username": "olapade sodeeq",
+         "email": "olapadeabiodun20@gmail.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
+         "id": 2,
+         "username": "Omolayo Victor",
+         "email": "omolayo@gma;oikuyjtil.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
+         "id": 1,
+         "username": "charles chiakwa",
+         "email": "charles@gmailkjhgfd.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
          "id": 3,
          "username": "Abetang Joseph",
-         "email": "abetang@gmail.com",
+         "email": "abetangJosephAbetang@gmail.com",
          "password": "password",
          "isAdmin": false
       },
       {
          "id": 4,
          "username": "Ibrahim Joseph",
-         "email": "ibrahim@gmail.com",
-         "password": "password",
-         "isAdmin": false
-      },
-      {
-         "id": 5,
-         "username": "sodeeq",
-         "email": "emaildkljnkl;kjhlnlknkn;@gmail.com",
-         "password": "password",
-         "isAdmin": true
-      },
-      {
-         "id": 2,
-         "username": "Omolayo Victor",
-         "email": "omolayo@gma;oikuyjtil.com",
+         "email": "ibrahimJosephIbrahim@gmail.com",
          "password": "password",
          "isAdmin": false
       }
@@ -77,12 +84,12 @@
       {
          "orderId": 0,
          "userId": 0,
-         "timeOfOrder": "5:03:53 AM",
+         "timeOfOrder": "9:18:18 AM",
          "dateOfOrder": "4/18/2019",
          "products": [
-            "rice",
-            "beans",
-            "chicken"
+            "tea",
+            "bread",
+            "butter"
          ]
       }
    ]

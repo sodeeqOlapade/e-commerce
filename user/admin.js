@@ -38,6 +38,6 @@ Admin.prototype.deleteOneUser = function(uId) {
 // admin1.saveToDb();
 
 // console.log(admin1);
-admin1.readAllUsers();
-admin1.deleteOneUser(1)
-admin1.readAllUsers();
+admin1.searchUserByName('sodeeq');
+// admin1.deleteOneUser(1)
+// admin1.readAllUsers();

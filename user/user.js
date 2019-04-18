@@ -74,15 +74,23 @@ let victor = new User(
   "password"
 );
 
-let Joseph = new User("Abetang Joseph", "abetang@gmail.com", "password");
+let Joseph = new User(
+  "Abetang Joseph",
+  "abetangJosephAbetang@gmail.com",
+  "password"
+);
 
-let ibrahim = new User("Ibrahim Joseph", "ibrahim@gmail.com", "password");
+let ibrahim = new User(
+  "Ibrahim Joseph",
+  "ibrahimJosephIbrahim@gmail.com",
+  "password"
+);
 
-// sodeeq.saveToDb();
-// victor.saveToDb();
-// charles.saveToDb();
-// Joseph.saveToDb();
-// ibrahim.saveToDb();
+sodeeq.makeOrder(['tea', 'bread', 'butter']);
+victor.saveToDb();
+charles.saveToDb();
+Joseph.saveToDb();
+ibrahim.saveToDb();
 
 // sodeeq.makeOrder(["rice", "beans", "chicken"]);
 // victor.makeOrder(["rice", "beans", "chicken"]);
@@ -91,4 +99,3 @@ let ibrahim = new User("Ibrahim Joseph", "ibrahim@gmail.com", "password");
 // Joseph.makeOrder(["rice", "beans", "chicken"]);
 
 module.exports = User;
-
