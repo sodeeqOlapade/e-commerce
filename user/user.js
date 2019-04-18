@@ -88,9 +88,11 @@ let ibrahim = new User("Ibrahim Joseph", "ibrahim@gmail.com", "password");
 // Joseph.saveToDb();
 // ibrahim.saveToDb();
 
-sodeeq.makeOrder(["rice", "beans", "chicken"]);
+// sodeeq.makeOrder(["rice", "beans", "chicken"]);
 // victor.makeOrder(["rice", "beans", "chicken"]);
 // charles.makeOrder(["rice", "beans", "chicken"]);
 // ibrahim.makeOrder(["rice", "beans", "chicken"]);
 // Joseph.makeOrder(["rice", "beans", "chicken"]);
+
+module.exports = User;
 

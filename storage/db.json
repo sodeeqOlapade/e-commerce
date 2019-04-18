@@ -34,6 +34,13 @@
          "email": "omolayo@gma;oikuyjtil.com",
          "password": "password",
          "isAdmin": false
+      },
+      {
+         "id": 5,
+         "username": "sodeeq",
+         "email": "emaildkljnkl;kjhlnlknkn;@gmail.com",
+         "password": "password",
+         "isAdmin": true
       }
    ],
    "ordersDb": [
