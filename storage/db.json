@@ -1,13 +1,6 @@
 {
    "usersDb": [
       {
-         "id": 0,
-         "username": "olapade sodeeq",
-         "email": "olapadeabiodun20@gmail.com",
-         "password": "password",
-         "isAdmin": false
-      },
-      {
          "id": 3,
          "username": "Abetang Joseph",
          "email": "abetang@gmail.com",
@@ -22,11 +15,11 @@
          "isAdmin": false
       },
       {
-         "id": 1,
-         "username": "charles chiakwa",
-         "email": "charles@gmailkjhgfd.com",
+         "id": 5,
+         "username": "sodeeq",
+         "email": "emaildkljnkl;kjhlnlknkn;@gmail.com",
          "password": "password",
-         "isAdmin": false
+         "isAdmin": true
       },
       {
          "id": 2,
@@ -34,13 +27,6 @@
          "email": "omolayo@gma;oikuyjtil.com",
          "password": "password",
          "isAdmin": false
-      },
-      {
-         "id": 5,
-         "username": "sodeeq",
-         "email": "emaildkljnkl;kjhlnlknkn;@gmail.com",
-         "password": "password",
-         "isAdmin": true
       }
    ],
    "ordersDb": [

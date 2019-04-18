@@ -28,10 +28,6 @@ User.prototype.saveToDb = function() {
   writeUserToDb("usersDb", user);
 };
 
-User.prototype.readAllUsers = function() {
-  readDbPath("usersDb");
-};
-
 User.prototype.searchUserByName = function(name) {
   searchUserByUsername(name);
 };

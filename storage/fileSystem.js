@@ -97,11 +97,37 @@ writeOrderToDb = function(path, object) {
   });
 };
 
+deleteOneUser = function(uId) {
+  fs.readFile("./storage/db.json", "utf8", (err, data) => {
+    if (err) throw err;
+    let response = JSON.parse(data);
+    let user = response.usersDb.filter(user => user.id === uId);
+
+    let userIndex = response.usersDb.indexOf(user[0]);
+
+    if(userIndex === -1){
+      console.log('User does not exist');
+      return;
+    }
+
+    response.usersDb.splice(userIndex, 1);
+
+    fs.writeFileSync(
+      "./storage/db.json",
+      JSON.stringify(response, null, 3),
+      "utf8"
+    );
+
+    console.log("User successfully deleted!");
+  });
+};
+
 module.exports = {
   readDbPath,
   searchUserByUsername,
   searchUserByUserId,
   writeUserToDb,
   updateUserById,
-  writeOrderToDb
+  writeOrderToDb,
+  deleteOneUser
 };
