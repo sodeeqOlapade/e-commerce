@@ -24,19 +24,14 @@ User.prototype.saveToDb = function() {
   user.email = this.email;
   user.password = this.password;
   user.isAdmin = false;
-
   writeUserToDb("usersDb", user);
-};
-
-User.prototype.readAllUsers = function() {
-  readDbPath("usersDb");
 };
 
 User.prototype.searchUserByName = function(name) {
   searchUserByUsername(name);
 };
 
-User.prototype.searchUserById = function(uId) {
+User.prototype.readOneUser = function(uId) {
   searchUserByUserId(uId);
 };
 
@@ -54,9 +49,12 @@ User.prototype.updateUserDetails = function(name, email, password) {
 };
 
 User.prototype.makeOrder = function(products) {
-  let id = this.uId;
-
-  let userOrder = new order(id, products);
+  let userOrder = new order(
+    (id = this.uId),
+    (username = this.username),
+    (email = this.email),
+    products
+  );
   writeOrderToDb("ordersDb", userOrder);
 };
 
@@ -78,19 +76,44 @@ let victor = new User(
   "password"
 );
 
-let Joseph = new User("Abetang Joseph", "abetang@gmail.com", "password");
+let Joseph = new User(
+  "Abetang Joseph",
+  "abetangJosephAbetang@gmail.com",
+  "password"
+);
 
-let ibrahim = new User("Ibrahim Joseph", "ibrahim@gmail.com", "password");
+let ibrahim = new User(
+  "Ibrahim Joseph",
+  "ibrahimJosephIbrahim@gmail.com",
+  "password"
+);
 
-// sodeeq.saveToDb();
+let tega = new User(
+  "Ibrahim Joseph Otega",
+  "ibrahimJosephIbrahim@gmail.com",
+  "password"
+);
+
+// sodeeq.readOneUser(3);
 // victor.saveToDb();
 // charles.saveToDb();
 // Joseph.saveToDb();
 // ibrahim.saveToDb();
+// tega.saveToDb();
 
-sodeeq.makeOrder(["rice", "beans", "chicken"]);
-// victor.makeOrder(["rice", "beans", "chicken"]);
+// sodeeq.updateUserDetails(
+//   "olapade abiodun",
+//   "olapadeabiodun2009@gmail.com",
+//   "password"
+// );
+
+// console.log(tega);
+
+// sodeeq.makeOrder(['tea', 'bread', 'butter']);
+// sodeeq.makeOrder(["rice", "beans", "chicken"]);
+// victor.makeOrder(["jeans", "milk", "flour"]);
 // charles.makeOrder(["rice", "beans", "chicken"]);
 // ibrahim.makeOrder(["rice", "beans", "chicken"]);
-// Joseph.makeOrder(["rice", "beans", "chicken"]);
+// Joseph.makeOrder(["rice", "TV-set", "matress"]);
 
+module.exports = User;

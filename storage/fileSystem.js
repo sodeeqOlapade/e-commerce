@@ -1,100 +1,131 @@
 const fs = require("fs");
 
 function readDb() {
-  fs.readFile("./storage/db.json", "utf8", (err, data) => {
-    if (err) throw err;
-    let response = JSON.parse(data);
-    return response;
-  });
+  let response = fs.readFileSync("./storage/db.json", "utf8");
+  responseAsObject = JSON.parse(response);
+  return responseAsObject;
+}
+
+function writeDataToDb(data) {
+  fs.writeFileSync("./storage/db.json", JSON.stringify(data, null, 3), "utf8");
+}
+
+function checkLength(user) {
+  user.length !== 0
+    ? console.log(user[0])
+    : console.log("FALSE, user does not exist!");
 }
 
 readDbPath = function(path) {
-  fs.readFile("./storage/db.json", "utf8", (err, data) => {
-    if (err) throw err;
-    let response = JSON.parse(data);
-    console.log(response[path]);
-  });
+  let response = readDb();
+  console.log(response[path]);
 };
 
 searchUserByUsername = function(name) {
-  fs.readFile("./storage/db.json", "utf8", (err, data) => {
-    if (err) throw err;
-    let response = JSON.parse(data);
-    let user = response.usersDb.filter(user => user.username === name);
-    user.length !== 0
-      ? console.log(user[0])
-      : console.log("FALSE, user does not exist!");
-  });
+  let response = readDb();
+  let user = response.usersDb.filter(user => user.username === name);
+  checkLength(user);
 };
 
 searchUserByUserId = function(uId) {
-  fs.readFile("./storage/db.json", "utf8", (err, data) => {
-    if (err) throw err;
-    let response = JSON.parse(data);
-    let user = response.usersDb.filter(user => user.id === uId);
-    user.length !== 0
-      ? console.log(user[0])
-      : console.log("FALSE, user does not exist!");
-  });
+  let response = readDb();
+  let user = response.usersDb.filter(user => user.id === uId);
+  checkLength(user);
 };
 
 updateUserById = function(uId, updatedUser) {
-  fs.readFile("./storage/db.json", "utf8", (err, data) => {
-    if (err) throw err;
-    let response = JSON.parse(data);
-    let user = response.usersDb.filter(user => user.id === uId);
+  let response = readDb();
+  let user = response.usersDb.filter(user => user.id === uId);
+  let userIndex = response.usersDb.indexOf(user[0]);
+  response.usersDb[userIndex] = updatedUser;
+  writeDataToDb(response);
+  console.log("Details successfully updated!");
+};
 
-    let userIndex = response.usersDb.indexOf(user[0]);
-
-    response.usersDb[userIndex] = updatedUser;
-
-    fs.writeFileSync(
-      "./storage/db.json",
-      JSON.stringify(response, null, 3),
-      "utf8"
-    );
-
-    console.log("Details successfully updated!");
-  });
+updateOrderById = function(orderId, products) {
+  let response = readDb();
+  let order = response.ordersDb.find(order => order.orderId === orderId);
+  if (order === undefined) {
+    console.log(`order with id: "${orderId}" does not exist`);
+  }
+  let orderIndex = response.ordersDb.indexOf(order);
+  console.log('before update', response.ordersDb[orderIndex]);
+  response.ordersDb[orderIndex].products = products;
+  response.ordersDb[orderIndex].timeOfOrder = new Date().toLocaleTimeString();
+  response.ordersDb[orderIndex].dateOfOrder = new Date().toLocaleDateString();
+  console.log('updated order', response.ordersDb[orderIndex]);
+  writeDataToDb(response);
+  console.log("Order successfully updated!");
 };
 
 writeUserToDb = function(path, object) {
-  fs.readFile("./storage/db.json", "utf8", (err, data) => {
-    if (err) throw err;
-    let response = JSON.parse(data);
-
-    if (response[path].some(user => user.username === object.username)) {
-      console.log(`user with username "${object.username}" already exist`);
-      return;
-    }
-
-    response[path].push(object);
-
-    fs.writeFileSync(
-      "./storage/db.json",
-      JSON.stringify(response, null, 3),
-      "utf8"
-    );
-
-    console.log("Account successfully created!");
-  });
+  let response = readDb();
+  if (response[path].some(user => user.username === object.username)) {
+    console.log(`user with username "${object.username}" already exist`);
+    return;
+  }
+  response[path].push(object);
+  writeDataToDb(response);
+  console.log("Account successfully created!");
 };
 
 writeOrderToDb = function(path, object) {
-  fs.readFile("./storage/db.json", "utf8", (err, data) => {
-    if (err) throw err;
-    let response = JSON.parse(data);
+  let response = readDb();
+  response[path].push(object);
+  writeDataToDb(response);
+  console.log("Order successfully created!");
+};
 
-    response[path].push(object);
+deleteUser = function(uId) {
+  let response = readDb();
+  if (arguments.length === 0) {
+    response.usersDb = [];
+    console.log("All Users deleted!");
+  } else {
+    let user = response.usersDb.filter(user => user.id === uId);
+    let userIndex = response.usersDb.indexOf(user[0]);
+    if (userIndex === -1) {
+      console.log("User does not exist");
+      return;
+    }
+    response.usersDb.splice(userIndex, 1);
+    console.log("User successfully deleted!");
+  }
+  writeDataToDb(response);
+};
 
-    fs.writeFileSync(
-      "./storage/db.json",
-      JSON.stringify(response, null, 3),
-      "utf8"
+readOrders = function(id) {
+  let response = readDb();
+  if (arguments.length === 0) {
+    //read all orders
+    console.log(response["ordersDb"]);
+  } else {
+    //read with Id
+    let order = response.ordersDb.find(order => order.orderId === id);
+    order === undefined
+      ? console.log("Order does not exist")
+      : console.log(order);
+  }
+};
+
+deleteOrder = function(uId) {
+  let response = readDb();
+  if (arguments.length === 0) {
+    response.ordersDb = [];
+    console.log("All Orders deleted!");
+  } else {
+    let orderToBeDeleted = response.ordersDb.filter(
+      order => order.orderId === uId
     );
-
-    console.log("Order successfully created!");
-  });
+    let orderIndex = response.ordersDb.indexOf(orderToBeDeleted[0]);
+    if (orderIndex === -1) {
+      console.log("Order does not exist");
+      return;
+    }
+    response.ordersDb.splice(orderIndex, 1);
+    console.log("order successfully deleted!");
+  }
+  writeDataToDb(response);
 };
 
 module.exports = {
@@ -103,5 +134,9 @@ module.exports = {
   searchUserByUserId,
   writeUserToDb,
   updateUserById,
-  writeOrderToDb
+  writeOrderToDb,
+  deleteUser,
+  readOrders,
+  deleteOrder,
+  updateOrderById
 };
