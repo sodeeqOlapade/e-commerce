@@ -31,7 +31,7 @@ User.prototype.searchUserByName = function(name) {
   searchUserByUsername(name);
 };
 
-User.prototype.searchUserById = function(uId) {
+User.prototype.readOneUser = function(uId) {
   searchUserByUserId(uId);
 };
 
@@ -94,7 +94,7 @@ let tega = new User(
   "password"
 );
 
-// sodeeq.saveToDb();
+// sodeeq.readOneUser(3);
 // victor.saveToDb();
 // charles.saveToDb();
 // Joseph.saveToDb();
@@ -102,10 +102,12 @@ let tega = new User(
 // tega.saveToDb();
 
 // sodeeq.updateUserDetails(
-//   "olapade sodeeq",
-//   "olapadeabiodun20@gmail.com",
+//   "olapade abiodun",
+//   "olapadeabiodun2009@gmail.com",
 //   "password"
 // );
+
+// console.log(tega);
 
 // sodeeq.makeOrder(['tea', 'bread', 'butter']);
 // sodeeq.makeOrder(["rice", "beans", "chicken"]);

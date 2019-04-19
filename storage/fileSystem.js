@@ -42,6 +42,22 @@ updateUserById = function(uId, updatedUser) {
   console.log("Details successfully updated!");
 };
 
+updateOrderById = function(orderId, products) {
+  let response = readDb();
+  let order = response.ordersDb.find(order => order.orderId === orderId);
+  if (order === undefined) {
+    console.log(`order with id: "${orderId}" does not exist`);
+  }
+  let orderIndex = response.ordersDb.indexOf(order);
+  console.log('before update', response.ordersDb[orderIndex]);
+  response.ordersDb[orderIndex].products = products;
+  response.ordersDb[orderIndex].timeOfOrder = new Date().toLocaleTimeString();
+  response.ordersDb[orderIndex].dateOfOrder = new Date().toLocaleDateString();
+  console.log('updated order', response.ordersDb[orderIndex]);
+  writeDataToDb(response);
+  console.log("Order successfully updated!");
+};
+
 writeUserToDb = function(path, object) {
   let response = readDb();
   if (response[path].some(user => user.username === object.username)) {
@@ -121,5 +137,6 @@ module.exports = {
   writeOrderToDb,
   deleteUser,
   readOrders,
-  deleteOrder
+  deleteOrder,
+  updateOrderById
 };

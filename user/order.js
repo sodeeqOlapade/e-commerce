@@ -1,6 +1,10 @@
 const generateOrderId = require("../user/orderId");
 const User = require("../user/user");
-const { readOrders, deleteOrder } = require("../storage/fileSystem");
+const {
+  readOrders,
+  deleteOrder,
+  updateOrderById
+} = require("../storage/fileSystem");
 
 function Order(userId, username, email, products) {
   this.orderId = generateOrderId();
@@ -20,16 +24,17 @@ Order.prototype.readAllOrders = function() {
   readOrders();
 };
 
+Order.prototype.updateOrderDetails = function(orderId, products) {
+  //implement here
+  updateOrderById(orderId, products);
+};
+
 Order.prototype.deleteOneOrder = function(uId) {
   deleteOrder(uId);
 };
 
 Order.prototype.deleteAllOrder = function() {
   deleteOrder();
-};
-
-Order.prototype.updateOrderDetails = function() {
-  console.log("updated!!!!");
 };
 
 module.exports = Order;
