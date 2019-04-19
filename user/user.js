@@ -94,7 +94,7 @@ let tega = new User(
   "password"
 );
 
-// sodeeq.readOneUser(3);
+// sodeeq.saveToDb();
 // victor.saveToDb();
 // charles.saveToDb();
 // Joseph.saveToDb();
@@ -107,7 +107,7 @@ let tega = new User(
 //   "password"
 // );
 
-// console.log(tega);
+// tega.readOneUser(99)
 
 // sodeeq.makeOrder(['tea', 'bread', 'butter']);
 // sodeeq.makeOrder(["rice", "beans", "chicken"]);

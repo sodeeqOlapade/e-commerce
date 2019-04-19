@@ -79,7 +79,7 @@ let admin4 = new Admin(
   "password"
 );
 
-admin1.updateOrderDetails(0, ['milk', 'shirts', 'soap']);
+admin1.deleteAllUser();
 
 // admin1.saveToDb();
 // admin2.saveToDb();

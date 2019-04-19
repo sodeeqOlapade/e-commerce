@@ -11,9 +11,15 @@ function writeDataToDb(data) {
 }
 
 function checkLength(user) {
-  user.length !== 0
-    ? console.log(user[0])
-    : console.log("FALSE, user does not exist!");
+
+  if(user.length !== 0){
+    console.log(user[0]);
+  }else{
+    throw new Error("FALSE, user does not exist!");
+  }
+  // user.length !== 0
+  //   ? console.log(user[0])
+  //   : console.log("FALSE, user does not exist!");
 }
 
 readDbPath = function(path) {
@@ -49,11 +55,11 @@ updateOrderById = function(orderId, products) {
     console.log(`order with id: "${orderId}" does not exist`);
   }
   let orderIndex = response.ordersDb.indexOf(order);
-  console.log('before update', response.ordersDb[orderIndex]);
+  console.log("before update", response.ordersDb[orderIndex]);
   response.ordersDb[orderIndex].products = products;
   response.ordersDb[orderIndex].timeOfOrder = new Date().toLocaleTimeString();
   response.ordersDb[orderIndex].dateOfOrder = new Date().toLocaleDateString();
-  console.log('updated order', response.ordersDb[orderIndex]);
+  console.log("updated order", response.ordersDb[orderIndex]);
   writeDataToDb(response);
   console.log("Order successfully updated!");
 };
