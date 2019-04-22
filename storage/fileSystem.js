@@ -6,46 +6,15 @@ function readDb() {
   return responseAsObject;
 }
 
+let dataBase = readDb();
+
 function writeDataToDb(data) {
   fs.writeFileSync("./storage/db.json", JSON.stringify(data, null, 3), "utf8");
-}
-
-function checkLength(user) {
-
-  if(user.length !== 0){
-    console.log(user[0]);
-  }else{
-    throw new Error("FALSE, user does not exist!");
-  }
-  // user.length !== 0
-  //   ? console.log(user[0])
-  //   : console.log("FALSE, user does not exist!");
 }
 
 readDbPath = function(path) {
   let response = readDb();
   console.log(response[path]);
-};
-
-searchUserByUsername = function(name) {
-  let response = readDb();
-  let user = response.usersDb.filter(user => user.username === name);
-  checkLength(user);
-};
-
-searchUserByUserId = function(uId) {
-  let response = readDb();
-  let user = response.usersDb.filter(user => user.id === uId);
-  checkLength(user);
-};
-
-updateUserById = function(uId, updatedUser) {
-  let response = readDb();
-  let user = response.usersDb.filter(user => user.id === uId);
-  let userIndex = response.usersDb.indexOf(user[0]);
-  response.usersDb[userIndex] = updatedUser;
-  writeDataToDb(response);
-  console.log("Details successfully updated!");
 };
 
 updateOrderById = function(orderId, products) {
@@ -64,23 +33,6 @@ updateOrderById = function(orderId, products) {
   console.log("Order successfully updated!");
 };
 
-writeUserToDb = function(path, object) {
-  let response = readDb();
-  if (response[path].some(user => user.username === object.username)) {
-    console.log(`user with username "${object.username}" already exist`);
-    return;
-  }
-  response[path].push(object);
-  writeDataToDb(response);
-  console.log("Account successfully created!");
-};
-
-writeOrderToDb = function(path, object) {
-  let response = readDb();
-  response[path].push(object);
-  writeDataToDb(response);
-  console.log("Order successfully created!");
-};
 
 deleteUser = function(uId) {
   let response = readDb();
@@ -135,14 +87,12 @@ deleteOrder = function(uId) {
 };
 
 module.exports = {
+  readDb,
   readDbPath,
-  searchUserByUsername,
-  searchUserByUserId,
-  writeUserToDb,
-  updateUserById,
-  writeOrderToDb,
   deleteUser,
   readOrders,
   deleteOrder,
-  updateOrderById
+  updateOrderById,
+  dataBase,
+  writeDataToDb
 };

@@ -1,4 +1,4 @@
-const User = require("../user/user");
+const {User} = require("../user/user");
 const Order = require("../user/order");
 
 const { readDbPath, deleteUser } = require("../storage/fileSystem");
@@ -56,7 +56,7 @@ Admin.prototype.updateOrderDetails = function(orderId, products) {
 };
 
 let admin1 = new Admin(
-  "sodeeq",
+  "sodeeqOlapade",
   "emaildkljnklkjhlnlknkn;@gmail.com",
   "password"
 );
@@ -79,9 +79,9 @@ let admin4 = new Admin(
   "password"
 );
 
-admin1.deleteAllUser();
+// admin1.deleteAllUser();
 
-// admin1.saveToDb();
+// admin2.deleteAllUser();
 // admin2.saveToDb();
 // admin3.saveToDb();
 // admin4.saveToDb();

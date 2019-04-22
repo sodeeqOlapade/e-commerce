@@ -1,15 +1,23 @@
 const {
+  readDb,
   readDbPath,
-  searchUserByUsername,
-  searchUserByUserId,
-  writeUserToDb,
-  updateUserById,
-  writeOrderToDb
+  dataBase,
+  writeDataToDb
 } = require("../storage/fileSystem");
 const generateId = require("../user/id");
 const order = require("../user/order");
 
 function User(name, email, password) {
+  if (
+    typeof name !== "string" ||
+    typeof email !== "string" ||
+    typeof password !== "string" ||
+    name === "" ||
+    email === "" ||
+    password === ""
+  ) {
+    throw new Error("Enter Valid name, email and password");
+  }
   this.username = name;
   this.email = email;
   this.password = password;
@@ -17,22 +25,39 @@ function User(name, email, password) {
   this.isAdmin = false;
 }
 
+function checkLength(user) {
+  if (user.length !== 0) {
+    console.log(user[0]);
+  } else {
+    throw new Error("FALSE, user does not exist!");
+  }
+}
+
 User.prototype.saveToDb = function() {
-  let user = {};
-  user.id = this.uId;
-  user.username = this.username;
-  user.email = this.email;
-  user.password = this.password;
-  user.isAdmin = false;
-  writeUserToDb("usersDb", user);
+  let newUser = {};
+  newUser.id = this.uId;
+  newUser.username = this.username;
+  newUser.email = this.email;
+  newUser.password = this.password;
+  newUser.isAdmin = false;
+
+  if (dataBase["usersDb"].some(user => user.username === newUser.username)) {
+    console.log(`user with username "${newUser.username}" already exist`);
+    return;
+  }
+  dataBase["usersDb"].push(newUser);
+  writeDataToDb(dataBase);
+  console.log("Account successfully created!");
 };
 
 User.prototype.searchUserByName = function(name) {
-  searchUserByUsername(name);
+  let user = dataBase.usersDb.filter(user => user.username === name);
+  checkLength(user);
 };
 
 User.prototype.readOneUser = function(uId) {
-  searchUserByUserId(uId);
+  let user = dataBase.usersDb.filter(user => user.id === uId);
+  checkLength(user);
 };
 
 User.prototype.updateUserDetails = function(name, email, password) {
@@ -45,7 +70,11 @@ User.prototype.updateUserDetails = function(name, email, password) {
   updatedUser.password = password;
   updatedUser.isAdmin = "false";
 
-  updateUserById(id, updatedUser);
+  let user = dataBase.usersDb.filter(user => user.id === id);
+  let userIndex = dataBase.usersDb.indexOf(user[0]);
+  dataBase.usersDb[userIndex] = updatedUser;
+  writeDataToDb(dataBase);
+  console.log("Details successfully updated!");
 };
 
 User.prototype.makeOrder = function(products) {
@@ -55,12 +84,15 @@ User.prototype.makeOrder = function(products) {
     (email = this.email),
     products
   );
-  writeOrderToDb("ordersDb", userOrder);
+
+  dataBase["ordersDb"].push(userOrder);
+  writeDataToDb(dataBase);
+  console.log("Order successfully created!");
 };
 
 let sodeeq = new User(
-  "olapade sodeeq",
-  "olapadeabiodun20@gmail.com",
+  "sodeeq",
+  "olapadeabiodungggjjjj20@gmail.com",
   "password"
 );
 
@@ -107,7 +139,7 @@ let tega = new User(
 //   "password"
 // );
 
-// tega.readOneUser(99)
+// tega.readOneUser(3);
 
 // sodeeq.makeOrder(['tea', 'bread', 'butter']);
 // sodeeq.makeOrder(["rice", "beans", "chicken"]);
@@ -116,4 +148,4 @@ let tega = new User(
 // ibrahim.makeOrder(["rice", "beans", "chicken"]);
 // Joseph.makeOrder(["rice", "TV-set", "matress"]);
 
-module.exports = User;
+module.exports = { User };
