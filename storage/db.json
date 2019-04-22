@@ -1,102 +1,47 @@
 {
-  "usersDb": [
-    {
-      "id": 0,
-      "username": "olapade abiodun",
-      "email": "olapadeabiodun2009@gmail.com",
-      "password": "password",
-      "isAdmin": "false"
-    },
-    {
-      "id": 2,
-      "username": "Omolayo Victor",
-      "email": "omolayo@gma;oikuyjtil.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
-      "id": 1,
-      "username": "charles chiakwa",
-      "email": "charles@gmailkjhgfd.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
-      "id": 3,
-      "username": "Abetang Joseph",
-      "email": "abetangJosephAbetang@gmail.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
-      "id": 4,
-      "username": "Ibrahim Joseph",
-      "email": "ibrahimJosephIbrahim@gmail.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
-      "id": 5,
-      "username": "Ibrahim Joseph Otega",
-      "email": "ibrahimJosephIbrahim@gmail.com",
-      "password": "password",
-      "isAdmin": false
-    }
-  ],
-  "ordersDb": [
-    {
-      "orderId": 0,
-      "userId": 0,
-      "username": "sodeeq",
-      "useremail": "olapadeabiodungggjjjj20@gmail.com",
-      "timeOfOrder": "5:58:53 AM",
-      "dateOfOrder": "4/22/2019",
-      "products": ["tea", "bread", "butter"]
-    },
-    {
-      "orderId": 1,
-      "userId": 0,
-      "username": "sodeeq",
-      "useremail": "olapadeabiodungggjjjj20@gmail.com",
-      "timeOfOrder": "5:58:53 AM",
-      "dateOfOrder": "4/22/2019",
-      "products": ["rice", "beans", "chicken"]
-    },
-    {
-      "orderId": 2,
-      "userId": 2,
-      "username": "Omolayo Victor",
-      "useremail": "omolayo@gma;oikuyjtil.com",
-      "timeOfOrder": "5:58:53 AM",
-      "dateOfOrder": "4/22/2019",
-      "products": ["jeans", "milk", "flour"]
-    },
-    {
-      "orderId": 3,
-      "userId": 1,
-      "username": "charles chiakwa",
-      "useremail": "charles@gmailkjhgfd.com",
-      "timeOfOrder": "5:58:53 AM",
-      "dateOfOrder": "4/22/2019",
-      "products": ["rice", "beans", "chicken"]
-    },
-    {
-      "orderId": 4,
-      "userId": 4,
-      "username": "Ibrahim Joseph",
-      "useremail": "ibrahimJosephIbrahim@gmail.com",
-      "timeOfOrder": "5:58:53 AM",
-      "dateOfOrder": "4/22/2019",
-      "products": ["rice", "beans", "chicken"]
-    },
-    {
-      "orderId": 5,
-      "userId": 3,
-      "username": "Abetang Joseph",
-      "useremail": "abetangJosephAbetang@gmail.com",
-      "timeOfOrder": "5:58:53 AM",
-      "dateOfOrder": "4/22/2019",
-      "products": ["rice", "TV-set", "matress"]
-    }
-  ]
+   "usersDb": [
+      {
+         "id": 0,
+         "username": "olapade abiodun",
+         "email": "olapadeabiodun2009@gmail.com",
+         "password": "password",
+         "isAdmin": "false"
+      },
+      {
+         "id": 2,
+         "username": "Omolayo Victor",
+         "email": "omolayo@gma;oikuyjtil.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
+         "id": 1,
+         "username": "charles chiakwa",
+         "email": "charles@gmailkjhgfd.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
+         "id": 3,
+         "username": "Abetang Joseph",
+         "email": "abetangJosephAbetang@gmail.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
+         "id": 4,
+         "username": "Ibrahim Joseph",
+         "email": "ibrahimJosephIbrahim@gmail.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
+         "id": 5,
+         "username": "Ibrahim Joseph Otega",
+         "email": "ibrahimJosephIbrahim@gmail.com",
+         "password": "password",
+         "isAdmin": false
+      }
+   ],
+   "ordersDb": []
 }

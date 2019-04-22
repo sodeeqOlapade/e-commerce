@@ -1,4 +1,4 @@
-const {User} = require("../user/user");
+const { User } = require("../user/user");
 const Order = require("../user/order");
 
 const { readDbPath, deleteUser } = require("../storage/fileSystem");
@@ -34,20 +34,12 @@ Admin.prototype.deleteAllUser = function() {
   deleteUser();
 };
 
-Admin.prototype.readOneOrder = function(orderId) {
-  Order.prototype.readOneOrder(orderId);
+Admin.prototype.readOrder = function(orderId = "") {
+  Order.prototype.readOrder(orderId);
 };
 
-Admin.prototype.readAllOrders = function() {
-  Order.prototype.readAllOrders();
-};
-
-Admin.prototype.deleteOneOrder = function(uId) {
-  Order.prototype.deleteOneOrder(uId);
-};
-
-Admin.prototype.deleteAllOrder = function() {
-  Order.prototype.deleteAllOrder();
+Admin.prototype.deleteOrder = function(uId = "") {
+  Order.prototype.deleteOrder(uId);
 };
 
 Admin.prototype.updateOrderDetails = function(orderId, products) {
@@ -79,7 +71,7 @@ let admin4 = new Admin(
   "password"
 );
 
-// admin1.deleteAllUser();
+admin1.deleteOrder()
 
 // admin2.deleteAllUser();
 // admin2.saveToDb();

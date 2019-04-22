@@ -1,9 +1,8 @@
 const generateOrderId = require("../user/orderId");
 const User = require("../user/user");
 const {
-  readOrders,
-  deleteOrder,
-  updateOrderById
+  dataBase,
+  writeDataToDb
 } = require("../storage/fileSystem");
 
 function Order(userId, username, email, products) {
@@ -16,25 +15,54 @@ function Order(userId, username, email, products) {
   this.products = products;
 }
 
-Order.prototype.readOneOrder = function(orderId) {
-  readOrders(orderId);
+Order.prototype.readOrder = function(orderId) {
+  if (orderId === '') {
+    //read all orders
+    console.log(dataBase["ordersDb"]);
+  } else {
+    //read with Id
+    let order = dataBase.ordersDb.find(order => order.orderId === orderId);
+    order === undefined
+      ? console.log("Order does not exist")
+      : console.log(order);
+  }
 };
 
-Order.prototype.readAllOrders = function() {
-  readOrders();
-};
 
 Order.prototype.updateOrderDetails = function(orderId, products) {
   //implement here
-  updateOrderById(orderId, products);
+  let order = dataBase.ordersDb.find(order => order.orderId === orderId);
+  if (order === undefined) {
+    console.log(`order with id: "${orderId}" does not exist`);
+  }
+  let orderIndex = dataBase.ordersDb.indexOf(order);
+  console.log("before update", dataBase.ordersDb[orderIndex]);
+  dataBase.ordersDb[orderIndex].products = products;
+  dataBase.ordersDb[orderIndex].timeOfOrder = new Date().toLocaleTimeString();
+  dataBase.ordersDb[orderIndex].dateOfOrder = new Date().toLocaleDateString();
+  console.log("updated order", dataBase.ordersDb[orderIndex]);
+  writeDataToDb(dataBase);
+  console.log("Order successfully updated!");
 };
 
-Order.prototype.deleteOneOrder = function(uId) {
-  deleteOrder(uId);
+Order.prototype.deleteOrder = function(uId) {
+  if (uId === '') {
+    dataBase.ordersDb = [];
+    console.log("All Orders deleted!");
+  } else {
+    let orderToBeDeleted = dataBase.ordersDb.filter(
+      order => order.orderId === uId
+    );
+    let orderIndex = dataBase.ordersDb.indexOf(orderToBeDeleted[0]);
+    if (orderIndex === -1) {
+      console.log("Order does not exist");
+      return;
+    }
+    dataBase.ordersDb.splice(orderIndex, 1);
+    console.log("order successfully deleted!");
+  }
+  writeDataToDb(dataBase);
 };
 
-Order.prototype.deleteAllOrder = function() {
-  deleteOrder();
-};
 
 module.exports = Order;
