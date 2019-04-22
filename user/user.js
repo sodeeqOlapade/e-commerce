@@ -25,7 +25,7 @@ function User(name, email, password) {
 
 function checkLength(user) {
   if (user.length !== 0) {
-    console.log(user[0]);
+    return user[0];
   } else {
     throw new Error("FALSE, user does not exist!");
   }
@@ -40,8 +40,7 @@ User.prototype.saveToDb = function() {
   newUser.isAdmin = false;
 
   if (dataBase["usersDb"].some(user => user.username === newUser.username)) {
-    console.log(`user with username "${newUser.username}" already exist`);
-    return;
+    throw new Error(`user with username "${newUser.username}" already exist`);
   }
   dataBase["usersDb"].push(newUser);
   writeDataToDb(dataBase);
@@ -50,12 +49,12 @@ User.prototype.saveToDb = function() {
 
 User.prototype.searchUserByName = function(name) {
   let user = dataBase.usersDb.filter(user => user.username === name);
-  checkLength(user);
+  return checkLength(user);
 };
 
 User.prototype.readOneUser = function(uId) {
   let user = dataBase.usersDb.filter(user => user.id === uId);
-  checkLength(user);
+  return checkLength(user);
 };
 
 User.prototype.updateUserDetails = function(name, email, password) {
@@ -69,8 +68,7 @@ User.prototype.updateUserDetails = function(name, email, password) {
   updatedUser.isAdmin = "false";
 
   if (dataBase["usersDb"].some(user => user.username === updatedUser.username)) {
-    console.log(`user with username "${updatedUser.username}" already exist`);
-    return;
+    throw new Error(`user with username "${updatedUser.username}" already exist`);
   }
 
   let user = dataBase.usersDb.filter(user => user.id === id);
@@ -93,41 +91,41 @@ User.prototype.makeOrder = function(products) {
   console.log("Order successfully created!");
 };
 
-let sodeeq = new User(
-  "sodeeq",
-  "olapadeabiodungggjjjj20@gmail.com",
-  "password"
-);
+// let sodeeq = new User(
+//   "sodeeq",
+//   "olapadeabiodungggjjjj20@gmail.com",
+//   "password"
+// );
 
-let charles = new User(
-  "charles chiakwa",
-  "charles@gmailkjhgfd.com",
-  "password"
-);
+// let charles = new User(
+//   "charles chiakwa",
+//   "charles@gmailkjhgfd.com",
+//   "password"
+// );
 
-let victor = new User(
-  "Omolayo Victor",
-  "omolayo@gma;oikuyjtil.com",
-  "password"
-);
+// let victor = new User(
+//   "Omolayo Victor",
+//   "omolayo@gma;oikuyjtil.com",
+//   "password"
+// );
 
-let Joseph = new User(
-  "Abetang Joseph",
-  "abetangJosephAbetang@gmail.com",
-  "password"
-);
+// let Joseph = new User(
+//   "Abetang Joseph",
+//   "abetangJosephAbetang@gmail.com",
+//   "password"
+// );
 
-let ibrahim = new User(
-  "Ibrahim Joseph",
-  "ibrahimJosephIbrahim@gmail.com",
-  "password"
-);
+// let ibrahim = new User(
+//   "Ibrahim Joseph",
+//   "ibrahimJosephIbrahim@gmail.com",
+//   "password"
+// );
 
-let tega = new User(
-  "Ibrahim Joseph Otega",
-  "ibrahimJosephIbrahim@gmail.com",
-  "password"
-);
+// let tega = new User(
+//   "Ibrahim Joseph Otega",
+//   "ibrahimJosephIbrahim@gmail.com",
+//   "password"
+// );
 
 // sodeeq.saveToDb();
 // victor.saveToDb();

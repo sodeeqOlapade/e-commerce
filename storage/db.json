@@ -1,4 +1,19 @@
 {
-   "usersDb": [],
+   "usersDb": [
+      {
+         "id": 0,
+         "username": "sodeeq",
+         "email": "olapadeabiodungggjjjj20@gmail.com",
+         "password": "password",
+         "isAdmin": false
+      },
+      {
+         "id": 2,
+         "username": "Omolayo Victor",
+         "email": "omolayo@gma;oikuyjtil.com",
+         "password": "password",
+         "isAdmin": false
+      }
+   ],
    "ordersDb": []
 }
