@@ -1,7 +1,7 @@
 const { User } = require("../user/user");
 const Order = require("../user/order");
 
-const { readDbPath, deleteUser } = require("../storage/fileSystem");
+const { dataBase, writeDataToDb} = require("../storage/fileSystem");
 
 function Admin(name, email, password) {
   User.call(this, name, email, password);
@@ -12,26 +12,44 @@ Admin.prototype = Object.create(User.prototype);
 Admin.prototype.constructor = Admin;
 
 Admin.prototype.saveToDb = function() {
-  let user = {};
-  user.id = this.uId;
-  user.username = this.username;
-  user.email = this.email;
-  user.password = this.password;
-  user.isAdmin = true;
+  let newUser = {};
+  newUser.id = this.uId;
+  newUser.username = this.username;
+  newUser.email = this.email;
+  newUser.password = this.password;
+  newUser.isAdmin = true;
 
-  writeUserToDb("usersDb", user);
+  // writeUserToDb("usersDb", user);
+
+  if (dataBase["usersDb"].some(user => user.username === newUser.username)) {
+    console.log(`user with username "${newUser.username}" already exist`);
+    return;
+  }
+  dataBase["usersDb"].push(newUser);
+  writeDataToDb(dataBase);
+  console.log("Account successfully created!");
 };
 
 Admin.prototype.readAllUsers = function() {
-  readDbPath("usersDb");
+  console.log(dataBase["usersDb"])
 };
 
-Admin.prototype.deleteOneUser = function(uId) {
-  deleteUser(uId);
-};
-
-Admin.prototype.deleteAllUser = function() {
-  deleteUser();
+Admin.prototype.deleteUser = function(uId = '') {
+  if (uId === '') {
+    dataBase.usersDb = [];
+    console.log("All Users deleted!");
+  } else {
+    //reImplement in a better and smater way
+    let user = dataBase.usersDb.filter(user => user.id === uId);
+    let userIndex = dataBase.usersDb.indexOf(user[0]);
+    if (userIndex === -1) {
+      console.log("User does not exist");
+      return;
+    }
+    dataBase.usersDb.splice(userIndex, 1);
+    console.log("User successfully deleted!");
+  }
+  writeDataToDb(dataBase);
 };
 
 Admin.prototype.readOrder = function(orderId = "") {
@@ -71,9 +89,12 @@ let admin4 = new Admin(
   "password"
 );
 
-admin1.deleteOrder()
+// admin2.updateUserDetails( "awofisayo",
+// "emaildkljnklkjhlnlknkn;@gmail.com",
+// "password")
 
-// admin2.deleteAllUser();
+admin1.deleteOrder();
+// admin2.saveToDb();
 // admin2.saveToDb();
 // admin3.saveToDb();
 // admin4.saveToDb();

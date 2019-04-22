@@ -1,6 +1,4 @@
 const {
-  readDb,
-  readDbPath,
   dataBase,
   writeDataToDb
 } = require("../storage/fileSystem");
@@ -69,6 +67,11 @@ User.prototype.updateUserDetails = function(name, email, password) {
   updatedUser.email = email;
   updatedUser.password = password;
   updatedUser.isAdmin = "false";
+
+  if (dataBase["usersDb"].some(user => user.username === updatedUser.username)) {
+    console.log(`user with username "${updatedUser.username}" already exist`);
+    return;
+  }
 
   let user = dataBase.usersDb.filter(user => user.id === id);
   let userIndex = dataBase.usersDb.indexOf(user[0]);
@@ -139,7 +142,7 @@ let tega = new User(
 //   "password"
 // );
 
-// tega.readOneUser(3);
+// tega.searchUserByName(' Joseph');
 
 // sodeeq.makeOrder(['tea', 'bread', 'butter']);
 // sodeeq.makeOrder(["rice", "beans", "chicken"]);

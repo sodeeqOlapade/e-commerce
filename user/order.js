@@ -46,6 +46,7 @@ Order.prototype.updateOrderDetails = function(orderId, products) {
 };
 
 Order.prototype.deleteOrder = function(uId) {
+  //implement that nothing deletes except when id or nothing is entered
   if (uId === '') {
     dataBase.ordersDb = [];
     console.log("All Orders deleted!");
