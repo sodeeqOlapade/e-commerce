@@ -1,7 +1,7 @@
 const { User } = require("../user/user");
 const Order = require("../user/order");
 
-const { dataBase, writeDataToDb} = require("../storage/fileSystem");
+const { dataBase, writeDataToDb } = require("../storage/fileSystem");
 
 function Admin(name, email, password) {
   User.call(this, name, email, password);
@@ -22,8 +22,8 @@ Admin.prototype.saveToDb = function() {
   // writeUserToDb("usersDb", user);
 
   if (dataBase["usersDb"].some(user => user.username === newUser.username)) {
-    console.log(`user with username "${newUser.username}" already exist`);
-    return;
+      throw new Error(`user with username "${newUser.username}" already exist`);
+
   }
   dataBase["usersDb"].push(newUser);
   writeDataToDb(dataBase);
@@ -31,11 +31,11 @@ Admin.prototype.saveToDb = function() {
 };
 
 Admin.prototype.readAllUsers = function() {
-  console.log(dataBase["usersDb"])
+  return dataBase["usersDb"];
 };
 
-Admin.prototype.deleteUser = function(uId = '') {
-  if (uId === '') {
+Admin.prototype.deleteUser = function(uId = "") {
+  if (uId === "") {
     dataBase.usersDb = [];
     console.log("All Users deleted!");
   } else {
@@ -43,8 +43,7 @@ Admin.prototype.deleteUser = function(uId = '') {
     let user = dataBase.usersDb.filter(user => user.id === uId);
     let userIndex = dataBase.usersDb.indexOf(user[0]);
     if (userIndex === -1) {
-      console.log("User does not exist");
-      return;
+      throw new Error(`User with id ${uId} does not exist`)
     }
     dataBase.usersDb.splice(userIndex, 1);
     console.log("User successfully deleted!");
@@ -53,7 +52,7 @@ Admin.prototype.deleteUser = function(uId = '') {
 };
 
 Admin.prototype.readOrder = function(orderId = "") {
-  Order.prototype.readOrder(orderId);
+  return Order.prototype.readOrder(orderId);
 };
 
 Admin.prototype.deleteOrder = function(uId = "") {
@@ -65,35 +64,35 @@ Admin.prototype.updateOrderDetails = function(orderId, products) {
   Order.prototype.updateOrderDetails(orderId, products);
 };
 
-let admin1 = new Admin(
-  "sodeeqOlapade",
-  "emaildkljnklkjhlnlknkn;@gmail.com",
-  "password"
-);
+// let admin1 = new Admin(
+//   "sodeeqOlapade",
+//   "emaildkljnklkjhlnlknkn;@gmail.com",
+//   "password"
+// );
 
-let admin2 = new Admin(
-  "remilekun",
-  "emaildkljnklkjhlnlknkn;@gmail.com",
-  "password"
-);
+// let admin2 = new Admin(
+//   "remilekun",
+//   "emaildkljnklkjhlnlknkn;@gmail.com",
+//   "password"
+// );
 
-let admin3 = new Admin(
-  "blessing",
-  "emaildkljnklkjhlnlknkn;@gmail.com",
-  "password"
-);
+// let admin3 = new Admin(
+//   "blessing",
+//   "emaildkljnklkjhlnlknkn;@gmail.com",
+//   "password"
+// );
 
-let admin4 = new Admin(
-  "ademidoyin",
-  "emaildkljnklkjhlnlknkn;@gmail.com",
-  "password"
-);
+// let admin4 = new Admin(
+//   "ademidoyin",
+//   "emaildkljnklkjhlnlknkn;@gmail.com",
+//   "password"
+// );
 
 // admin2.updateUserDetails( "awofisayo",
 // "emaildkljnklkjhlnlknkn;@gmail.com",
 // "password")
 
-admin1.deleteOrder();
+// admin1.deleteOrder();
 // admin2.saveToDb();
 // admin2.saveToDb();
 // admin3.saveToDb();
@@ -107,3 +106,5 @@ admin1.deleteOrder();
 // admin1.adminDeleteOneOrder(1);
 // admin1.deleteOneUser(1)
 // admin1.readAllUsers();
+
+module.exports = { Admin };

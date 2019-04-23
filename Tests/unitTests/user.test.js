@@ -119,6 +119,9 @@ describe("Users", () => {
 
   it("create new order for a user", () => {
     newUser.makeOrder(["mouse", "keyboard", "flash drive"]);
+    newUser.makeOrder(["Headset", "VR-kit", "mousepad"]);
+    newUser1.makeOrder(["pants", "shirts", "shoes"]);
+
     const result = readDb().ordersDb;
     console.log(result);
     expect(result).toBeDefined();
