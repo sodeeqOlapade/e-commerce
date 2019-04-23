@@ -1,31 +1,4 @@
 {
-   "usersDb": [],
-   "ordersDb": [
-      {
-         "orderId": 0,
-         "userId": 6,
-         "username": "sodeeq",
-         "useremail": "emaildkljnklkjhlnlknkn;@gmail.com",
-         "timeOfOrder": "4:38:14 AM",
-         "dateOfOrder": "4/19/2019",
-         "products": [
-            "milk",
-            "shirts",
-            "soap"
-         ]
-      },
-      {
-         "orderId": 1,
-         "userId": 8,
-         "username": "blessing",
-         "useremail": "emaildkljnklkjhlnlknkn;@gmail.com",
-         "timeOfOrder": "5:17:59 PM",
-         "dateOfOrder": "4/18/2019",
-         "products": [
-            "bently",
-            "bugati",
-            "benz"
-         ]
-      }
-   ]
+  "usersDb": [],
+  "ordersDb": []
 }

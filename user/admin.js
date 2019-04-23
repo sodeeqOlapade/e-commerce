@@ -1,7 +1,7 @@
-const User = require("../user/user");
+const { User } = require("../user/user");
 const Order = require("../user/order");
 
-const { readDbPath, deleteUser } = require("../storage/fileSystem");
+const { dataBase, writeDataToDb } = require("../storage/fileSystem");
 
 function Admin(name, email, password) {
   User.call(this, name, email, password);
@@ -12,42 +12,51 @@ Admin.prototype = Object.create(User.prototype);
 Admin.prototype.constructor = Admin;
 
 Admin.prototype.saveToDb = function() {
-  let user = {};
-  user.id = this.uId;
-  user.username = this.username;
-  user.email = this.email;
-  user.password = this.password;
-  user.isAdmin = true;
+  let newUser = {};
+  newUser.id = this.uId;
+  newUser.username = this.username;
+  newUser.email = this.email;
+  newUser.password = this.password;
+  newUser.isAdmin = true;
 
-  writeUserToDb("usersDb", user);
+  // writeUserToDb("usersDb", user);
+
+  if (dataBase["usersDb"].some(user => user.username === newUser.username)) {
+      throw new Error(`user with username "${newUser.username}" already exist`);
+
+  }
+  dataBase["usersDb"].push(newUser);
+  writeDataToDb(dataBase);
+  console.log("Account successfully created!");
 };
 
 Admin.prototype.readAllUsers = function() {
-  readDbPath("usersDb");
+  return dataBase["usersDb"];
 };
 
-Admin.prototype.deleteOneUser = function(uId) {
-  deleteUser(uId);
+Admin.prototype.deleteUser = function(uId = "") {
+  if (uId === "") {
+    dataBase.usersDb = [];
+    console.log("All Users deleted!");
+  } else {
+    //reImplement in a better and smater way
+    let user = dataBase.usersDb.filter(user => user.id === uId);
+    let userIndex = dataBase.usersDb.indexOf(user[0]);
+    if (userIndex === -1) {
+      throw new Error(`User with id ${uId} does not exist`)
+    }
+    dataBase.usersDb.splice(userIndex, 1);
+    console.log("User successfully deleted!");
+  }
+  writeDataToDb(dataBase);
 };
 
-Admin.prototype.deleteAllUser = function() {
-  deleteUser();
+Admin.prototype.readOrder = function(orderId = "") {
+  return Order.prototype.readOrder(orderId);
 };
 
-Admin.prototype.readOneOrder = function(orderId) {
-  Order.prototype.readOneOrder(orderId);
-};
-
-Admin.prototype.readAllOrders = function() {
-  Order.prototype.readAllOrders();
-};
-
-Admin.prototype.deleteOneOrder = function(uId) {
-  Order.prototype.deleteOneOrder(uId);
-};
-
-Admin.prototype.deleteAllOrder = function() {
-  Order.prototype.deleteAllOrder();
+Admin.prototype.deleteOrder = function(uId = "") {
+  Order.prototype.deleteOrder(uId);
 };
 
 Admin.prototype.updateOrderDetails = function(orderId, products) {
@@ -55,33 +64,36 @@ Admin.prototype.updateOrderDetails = function(orderId, products) {
   Order.prototype.updateOrderDetails(orderId, products);
 };
 
-let admin1 = new Admin(
-  "sodeeq",
-  "emaildkljnklkjhlnlknkn;@gmail.com",
-  "password"
-);
+// let admin1 = new Admin(
+//   "sodeeqOlapade",
+//   "emaildkljnklkjhlnlknkn;@gmail.com",
+//   "password"
+// );
 
-let admin2 = new Admin(
-  "remilekun",
-  "emaildkljnklkjhlnlknkn;@gmail.com",
-  "password"
-);
+// let admin2 = new Admin(
+//   "remilekun",
+//   "emaildkljnklkjhlnlknkn;@gmail.com",
+//   "password"
+// );
 
-let admin3 = new Admin(
-  "blessing",
-  "emaildkljnklkjhlnlknkn;@gmail.com",
-  "password"
-);
+// let admin3 = new Admin(
+//   "blessing",
+//   "emaildkljnklkjhlnlknkn;@gmail.com",
+//   "password"
+// );
 
-let admin4 = new Admin(
-  "ademidoyin",
-  "emaildkljnklkjhlnlknkn;@gmail.com",
-  "password"
-);
+// let admin4 = new Admin(
+//   "ademidoyin",
+//   "emaildkljnklkjhlnlknkn;@gmail.com",
+//   "password"
+// );
 
-admin1.updateOrderDetails(0, ['milk', 'shirts', 'soap']);
+// admin2.updateUserDetails( "awofisayo",
+// "emaildkljnklkjhlnlknkn;@gmail.com",
+// "password")
 
-// admin1.saveToDb();
+// admin1.deleteOrder();
+// admin2.saveToDb();
 // admin2.saveToDb();
 // admin3.saveToDb();
 // admin4.saveToDb();
@@ -94,3 +106,5 @@ admin1.updateOrderDetails(0, ['milk', 'shirts', 'soap']);
 // admin1.adminDeleteOneOrder(1);
 // admin1.deleteOneUser(1)
 // admin1.readAllUsers();
+
+module.exports = { Admin };
