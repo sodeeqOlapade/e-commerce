@@ -97,13 +97,14 @@ describe("Users", () => {
     );
 
     const result = readDb().usersDb;
+    console.log("resultzzz", result);
 
-    expect(result).toContainEqual({
+    expect(result[0]).toEqual({
       id: 0,
       username: "charles chaikwa ebuka",
       email: "charleschiakwaebuka@gmail.com",
       password: "password1234",
-      isAdmin: "false"
+      isAdmin: false
     });
   });
 

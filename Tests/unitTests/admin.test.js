@@ -75,6 +75,24 @@ describe("Admin", () => {
     });
   });
 
+  it("updates users details with the provided new details", () => {
+    newAdmin.updateUserDetails(
+      "charles chaikwa ebuka",
+      "charleschiakwaebuka@gmail.com",
+      "password1234"
+    );
+
+    const result = readDb().usersDb;
+
+    expect(result[0]).toEqual({
+      id: 0,
+      username: "charles chaikwa ebuka",
+      email: "charleschiakwaebuka@gmail.com",
+      password: "password1234",
+      isAdmin: true
+    });
+  });
+
   it("fetches and display all orders in the database", () => {
     newAdmin.makeOrder(["mouse", "keyboard", "flash drive"]);
     newAdmin1.makeOrder(["Headset", "VR-kit", "mousepad"]);
