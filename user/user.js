@@ -59,13 +59,13 @@ User.prototype.readOneUser = function(uId) {
 
 User.prototype.updateUserDetails = function(name, email, password) {
   let id = this.uId;
+  let isAdmin = this.isAdmin;
 
   let updatedUser = {};
   updatedUser.id = id;
   updatedUser.username = name;
   updatedUser.email = email;
   updatedUser.password = password;
-  updatedUser.isAdmin = "false";
 
   if (dataBase["usersDb"].some(user => user.username === updatedUser.username)) {
     throw new Error(`user with username "${updatedUser.username}" already exist`);
@@ -73,6 +73,9 @@ User.prototype.updateUserDetails = function(name, email, password) {
 
   let user = dataBase.usersDb.filter(user => user.id === id);
   let userIndex = dataBase.usersDb.indexOf(user[0]);
+
+  isAdmin ? updatedUser.isAdmin = true : updatedUser.isAdmin= false;
+  
   dataBase.usersDb[userIndex] = updatedUser;
   writeDataToDb(dataBase);
   console.log("Details successfully updated!");
