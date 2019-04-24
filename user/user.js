@@ -6,16 +6,6 @@ const generateId = require("../user/id");
 const order = require("../user/order");
 
 function User(name, email, password) {
-  if (
-    typeof name !== "string" ||
-    typeof email !== "string" ||
-    typeof password !== "string" ||
-    name === "" ||
-    email === "" ||
-    password === ""
-  ) {
-    throw new Error("Enter Valid name, email and password");
-  }
   this.username = name;
   this.email = email;
   this.password = password;
@@ -32,17 +22,11 @@ function checkLength(user) {
 }
 
 User.prototype.saveToDb = function() {
-  let newUser = {};
-  newUser.id = this.uId;
-  newUser.username = this.username;
-  newUser.email = this.email;
-  newUser.password = this.password;
-  newUser.isAdmin = false;
 
-  if (dataBase["usersDb"].some(user => user.username === newUser.username)) {
-    throw new Error(`user with username "${newUser.username}" already exist`);
+  if (dataBase["usersDb"].some(user => user.username === this.username)) {
+    throw new Error(`user with username "${this.username}" already exist`);
   }
-  dataBase["usersDb"].push(newUser);
+  dataBase["usersDb"].push(this);
   writeDataToDb(dataBase);
   console.log("Account successfully created!");
 };
@@ -53,30 +37,30 @@ User.prototype.searchUserByName = function(name) {
 };
 
 User.prototype.readOneUser = function(uId) {
-  let user = dataBase.usersDb.filter(user => user.id === uId);
+  let user = dataBase.usersDb.filter(user => user.uId === uId);
   return checkLength(user);
 };
 
 User.prototype.updateUserDetails = function(name, email, password) {
+  
   let id = this.uId;
   let isAdmin = this.isAdmin;
 
-  let updatedUser = {};
-  updatedUser.id = id;
-  updatedUser.username = name;
-  updatedUser.email = email;
-  updatedUser.password = password;
-
-  if (dataBase["usersDb"].some(user => user.username === updatedUser.username)) {
-    throw new Error(`user with username "${updatedUser.username}" already exist`);
+  if (dataBase["usersDb"].some(user => user.username === name)) {
+    throw new Error(`user with username "${readUser.username}" already exist`);
   }
+  let readUser = User.prototype.readOneUser(this.uId);
+  
+  readUser.username = name;
+  readUser.email = email;
+  readUser.password = password;
 
-  let user = dataBase.usersDb.filter(user => user.id === id);
+  let user = dataBase.usersDb.filter(user => user.uId === id);
   let userIndex = dataBase.usersDb.indexOf(user[0]);
 
-  isAdmin ? updatedUser.isAdmin = true : updatedUser.isAdmin= false;
+  isAdmin ? readUser.isAdmin = true : readUser.isAdmin= false;
   
-  dataBase.usersDb[userIndex] = updatedUser;
+  dataBase.usersDb[userIndex] = readUser;
   writeDataToDb(dataBase);
   console.log("Details successfully updated!");
 };
@@ -94,62 +78,6 @@ User.prototype.makeOrder = function(products) {
   console.log("Order successfully created!");
 };
 
-// let sodeeq = new User(
-//   "sodeeq",
-//   "olapadeabiodungggjjjj20@gmail.com",
-//   "password"
-// );
 
-// let charles = new User(
-//   "charles chiakwa",
-//   "charles@gmailkjhgfd.com",
-//   "password"
-// );
-
-// let victor = new User(
-//   "Omolayo Victor",
-//   "omolayo@gma;oikuyjtil.com",
-//   "password"
-// );
-
-// let Joseph = new User(
-//   "Abetang Joseph",
-//   "abetangJosephAbetang@gmail.com",
-//   "password"
-// );
-
-// let ibrahim = new User(
-//   "Ibrahim Joseph",
-//   "ibrahimJosephIbrahim@gmail.com",
-//   "password"
-// );
-
-// let tega = new User(
-//   "Ibrahim Joseph Otega",
-//   "ibrahimJosephIbrahim@gmail.com",
-//   "password"
-// );
-
-// sodeeq.saveToDb();
-// victor.saveToDb();
-// charles.saveToDb();
-// Joseph.saveToDb();
-// ibrahim.saveToDb();
-// tega.saveToDb();
-
-// sodeeq.updateUserDetails(
-//   "olapade abiodun",
-//   "olapadeabiodun2009@gmail.com",
-//   "password"
-// );
-
-// tega.searchUserByName(' Joseph');
-
-// sodeeq.makeOrder(['tea', 'bread', 'butter']);
-// sodeeq.makeOrder(["rice", "beans", "chicken"]);
-// victor.makeOrder(["jeans", "milk", "flour"]);
-// charles.makeOrder(["rice", "beans", "chicken"]);
-// ibrahim.makeOrder(["rice", "beans", "chicken"]);
-// Joseph.makeOrder(["rice", "TV-set", "matress"]);
 
 module.exports = { User };

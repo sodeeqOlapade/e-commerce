@@ -14,12 +14,6 @@ const newAdmin1 = new Admin(
 );
 
 describe("Admin", () => {
-  it("throws error if users details are not filled in properly or  wrong data entered", () => {
-    expect(() => {
-      new Admin();
-    }).toThrow();
-  });
-
   it("creates admin when details are properly supplied", () => {
     expect(newAdmin).toBeDefined();
     expect(newAdmin).toMatchObject({
@@ -40,7 +34,7 @@ describe("Admin", () => {
     expect(result).toBeDefined();
     expect(result.length).toBeGreaterThanOrEqual(1);
     expect(result).toContainEqual({
-      id: 0,
+      uId: 0,
       username: "Jane Donald",
       email: "janeDonald@gmailkjhgfd.com",
       password: "password",
@@ -60,14 +54,14 @@ describe("Admin", () => {
     expect(result).toBeDefined();
     expect(result.length).toBeGreaterThanOrEqual(1);
     expect(result).toContainEqual({
-      id: 0,
+      uId: 0,
       username: "Jane Donald",
       email: "janeDonald@gmailkjhgfd.com",
       password: "password",
       isAdmin: true
     });
     expect(result).toContainEqual({
-      id: 1,
+      uId: 1,
       username: "John Doe Eric",
       email: "johnDoeEric@gmailkjhgfd.com",
       password: "password",
@@ -85,7 +79,7 @@ describe("Admin", () => {
     const result = readDb().usersDb;
 
     expect(result[0]).toEqual({
-      id: 0,
+      uId: 0,
       username: "charles chaikwa ebuka",
       email: "charleschiakwaebuka@gmail.com",
       password: "password1234",
@@ -105,8 +99,8 @@ describe("Admin", () => {
     expect(result[0]).toMatchObject({
       orderId: 0,
       userId: 0,
-      username: "Jane Donald",
-      useremail: "janeDonald@gmailkjhgfd.com",
+      username: "charles chaikwa ebuka",
+      useremail: "charleschiakwaebuka@gmail.com",
       products: ["mouse", "keyboard", "flash drive"]
     });
   });
@@ -118,8 +112,8 @@ describe("Admin", () => {
     expect(result).toMatchObject({
       orderId: 0,
       userId: 0,
-      username: "Jane Donald",
-      useremail: "janeDonald@gmailkjhgfd.com",
+      username: "charles chaikwa ebuka",
+      useremail: "charleschiakwaebuka@gmail.com",
       products: ["mouse", "keyboard", "flash drive"]
     });
   });
@@ -138,8 +132,8 @@ describe("Admin", () => {
     expect(result[0]).toMatchObject({
       orderId: 0,
       userId: 0,
-      username: "Jane Donald",
-      useremail: "janeDonald@gmailkjhgfd.com",
+      username: "charles chaikwa ebuka",
+      useremail: "charleschiakwaebuka@gmail.com",
       products: ["rice", "beans", "oil"]
     });
   });

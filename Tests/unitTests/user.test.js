@@ -14,11 +14,6 @@ const newUser1 = new User(
 );
 
 describe("Users", () => {
-  it("throws error if users details are not filled in properly or  wrong data entered", () => {
-    expect(() => {
-      User();
-    }).toThrow();
-  });
 
   it("creates user when details are properly supplied", () => {
     expect(newUser).toBeDefined();
@@ -41,7 +36,7 @@ describe("Users", () => {
     expect(result).toBeDefined();
     expect(result.length).toBeGreaterThanOrEqual(1);
     expect(result).toContainEqual({
-      id: 0,
+      uId: 0,
       username: "charles chiakwa",
       email: "charles@gmailkjhgfd.com",
       password: "password",
@@ -57,8 +52,7 @@ describe("Users", () => {
 
   it("searches for user with username", () => {
     const result = newUser.searchUserByName("charles chiakwa");
-    expect(result).toEqual({
-      id: 0,
+    expect(result).toMatchObject({
       username: "charles chiakwa",
       email: "charles@gmailkjhgfd.com",
       password: "password",
@@ -75,7 +69,7 @@ describe("Users", () => {
   it("searches for user with userId", () => {
     const result = newUser.readOneUser(0);
     expect(result).toEqual({
-      id: 0,
+      uId: 0,
       username: "charles chiakwa",
       email: "charles@gmailkjhgfd.com",
       password: "password",
@@ -100,7 +94,7 @@ describe("Users", () => {
     console.log("resultzzz", result);
 
     expect(result[0]).toEqual({
-      id: 0,
+      uId: 0,
       username: "charles chaikwa ebuka",
       email: "charleschiakwaebuka@gmail.com",
       password: "password1234",
@@ -130,8 +124,8 @@ describe("Users", () => {
     expect(result[0]).toMatchObject({
       orderId: 0,
       userId: 0,
-      username: "charles chiakwa",
-      useremail: "charles@gmailkjhgfd.com",
+      username: 'charles chaikwa ebuka',
+      useremail: 'charleschiakwaebuka@gmail.com',
       products: ["mouse", "keyboard", "flash drive"]
     });
   });
