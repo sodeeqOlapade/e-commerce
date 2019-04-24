@@ -1,0 +1,17 @@
+
+# General
+.DS_Store
+
+# Dependency directories
+/node_modules
+
+
+
+#code runner
+tempCodeRunnerFile.js
+
+#test coverage folder
+/coverage
+
+#vs code
+/.vscode
